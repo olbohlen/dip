@@ -65,6 +65,7 @@ BEGIN {
     sub("[a-z]*=", "", target);
 
     sub("^ ", ENVIRON["rootpath"], target);
+    sub("^", ENVIRON["rootpath"], path);
     printf("ln -s %s %s\n", path, target) >> "/tmp/foo.out";
   }
   if($1~/^hardlink$/) {
@@ -74,6 +75,7 @@ BEGIN {
     sub("[a-z]*=", "", path);
     sub("[a-z]*=", "", target);
 
+    sub("^ ", ENVIRON["rootpath"], path);
     sub("^ ", ENVIRON["rootpath"], target);
     printf("ln %s %s\n", path, target) >> "/tmp/foo.out";
   }
